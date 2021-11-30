@@ -1,7 +1,7 @@
 import { AppError } from 'shared/errors/AppError';
-import { ProductRepository } from '../infra/typeorm/repositories/ProductsRepository';
 import { Product } from '../infra/typeorm/entities/Product';
 import { inject, injectable } from 'tsyringe';
+import { IProductsRepository } from '../domain/repositories/IProductsRepository';
 
 interface IRequest {
   id: string;
@@ -11,7 +11,7 @@ interface IRequest {
 export class ShowProductService {
   constructor(
     @inject('ProductRepository')
-    private productRepository: ProductRepository,
+    private productRepository: IProductsRepository,
   ) {}
 
   public async execute({ id }: IRequest): Promise<Product | undefined> {
