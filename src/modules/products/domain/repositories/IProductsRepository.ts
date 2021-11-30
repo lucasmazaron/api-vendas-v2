@@ -6,4 +6,5 @@ export interface IProductsRepository {
   findById(id: string): Promise<IProduct | undefined>;
   create(data: ICreateProduct): Promise<IProduct>;
   save(product: IProduct): Promise<IProduct>;
+  remove(product: IProduct): Promise<void>;
 }
