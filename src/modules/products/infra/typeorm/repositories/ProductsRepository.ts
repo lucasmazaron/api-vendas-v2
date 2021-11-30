@@ -37,4 +37,10 @@ export class ProductRepository implements IProductsRepository {
 
     return product;
   }
+
+  public async findById(id: string): Promise<Product | undefined> {
+    const product = await this.ormRepository.findOne(id);
+
+    return product;
+  }
 }

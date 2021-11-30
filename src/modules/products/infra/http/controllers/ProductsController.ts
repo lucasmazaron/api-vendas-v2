@@ -43,7 +43,8 @@ export class ProductsController {
     const { name, price, quantity } = request.body;
     const { id } = request.params;
 
-    const updateProduct = new UpdateProductService();
+    const updateProduct = container.resolve(UpdateProductService);
+
     const product = await updateProduct.execute({
       id,
       name,
