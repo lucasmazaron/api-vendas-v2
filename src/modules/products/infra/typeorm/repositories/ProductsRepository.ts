@@ -1,7 +1,7 @@
 import { IProductsRepository } from './../../../domain/repositories/IProductsRepository';
 import { Product } from '../entities/Product';
 import { getRepository, Repository } from 'typeorm';
-import { ICreateProducts } from 'modules/products/domain/models/ICreateProducts';
+import { ICreateProduct } from 'modules/products/domain/models/ICreateProduct';
 
 export class ProductRepository implements IProductsRepository {
   private ormRepository: Repository<Product>;
@@ -14,7 +14,7 @@ export class ProductRepository implements IProductsRepository {
     name,
     price,
     quantity,
-  }: ICreateProducts): Promise<Product> {
+  }: ICreateProduct): Promise<Product> {
     const product = this.ormRepository.create({ name, price, quantity });
 
     await this.ormRepository.save(product);
