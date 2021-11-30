@@ -2,9 +2,14 @@ import { IProductsRepository } from './../domain/repositories/IProductsRepositor
 import { ICreateProduct } from '../domain/models/ICreateProduct';
 import { AppError } from 'shared/errors/AppError';
 import { IProduct } from '../domain/models/IProduct';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 export class CreateProductService {
-  constructor(private productsRepository: IProductsRepository) {}
+  constructor(
+    @inject('ProductRepository')
+    private productsRepository: IProductsRepository,
+  ) {}
 
   public async execute({
     name,

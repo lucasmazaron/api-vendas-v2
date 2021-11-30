@@ -4,6 +4,7 @@ import { CreateProductService } from '../../../services/CreateProductService';
 import { ListProductService } from '../../../services/ListProductService';
 import { ShowProductService } from '../../../services/ShowProductService';
 import { UpdateProductService } from '../../../services/UpdateProductService';
+import { container } from 'tsyringe';
 
 export class ProductsController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -26,7 +27,8 @@ export class ProductsController {
 
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, price, quantity } = request.body;
-    const createProduct = new CreateProductService();
+
+    const createProduct = container.resolve(CreateProductService);
 
     const product = await createProduct.execute({
       name,
