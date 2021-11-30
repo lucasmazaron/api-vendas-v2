@@ -18,7 +18,7 @@ export class ProductsController {
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const showProduct = new ShowProductService();
+    const showProduct = container.resolve(ShowProductService);
 
     const product = await showProduct.execute({ id });
 
