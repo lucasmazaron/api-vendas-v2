@@ -14,7 +14,7 @@ export class ShowProductService {
     private productRepository: IProductsRepository,
   ) {}
 
-  public async execute({ id }: IRequest): Promise<Product | undefined> {
+  public async execute({ id }: IRequest): Promise<Product> {
     const product = await this.productRepository.findById(id);
 
     if (!product) {
