@@ -41,7 +41,7 @@ describe('UpdateProductService', () => {
     expect(updatedProduct.quantity).toBe(fakeProduct2.quantity);
   });
 
-  it('should not be able to update a product with the product not exists', async () => {
+  it('should not be able to update a product if the product not exists', async () => {
     expect(
       updateProductService.execute({
         ...fakeProduct2,
@@ -50,7 +50,7 @@ describe('UpdateProductService', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('should not be able to update a product with the product have the same name', async () => {
+  it('should not be able to update the product if it has the same name', async () => {
     const product = await createProductService.execute(fakeProduct);
     const product2 = await createProductService.execute(fakeProduct2);
 
